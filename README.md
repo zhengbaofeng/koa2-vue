@@ -24,5 +24,9 @@ npm run web
 ```
 npm run build
 ```
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# 技术栈
+koa2 mysql redis vue
+
+前端框架vant
+
