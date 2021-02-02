@@ -1,0 +1,22 @@
+[2021-01-28T17:37:55.940] [ERROR] errorLogger - 
+*************** error log start ***************
+request method: GET
+request originalUrl:  /api/login?account=001&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"001","password":"111111"}
+response time: 12
+err name: TypeError
+err message: ctx.fail is not a function
+err stack: TypeError: ctx.fail is not a function
+    at /Users/zhengbaofeng/project/koa-vue/servers/controllers/user.js:62:9
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async loginFunc (/Users/zhengbaofeng/project/koa-vue/servers/controllers/user.js:38:3)
+    at async /Users/zhengbaofeng/project/koa-vue/servers/app.js:70:3
+    at async /Users/zhengbaofeng/project/koa-vue/servers/app.js:63:3
+    at async /Users/zhengbaofeng/project/koa-vue/servers/app.js:53:5
+    at async serve (/Users/zhengbaofeng/project/koa-vue/node_modules/koa-static/index.js:53:9)
+    at async /Users/zhengbaofeng/project/koa-vue/servers/utils/routerResponse.js:61:5
+    at async logger (/Users/zhengbaofeng/project/node_modules/koa-logger/index.js:67:7)
+    at async bodyParser (/Users/zhengbaofeng/project/node_modules/koa-bodyparser/index.js:95:5)
+*************** error log end ***************
+

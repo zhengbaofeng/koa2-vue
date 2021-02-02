@@ -1,0 +1,38 @@
+[2021-02-01T13:15:34.614] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+response status: 200
+response body: 
+{"code":0,"data":"{\"id\":1,\"name\":\"张三\",\"age\":18,\"phone\":\"199339922383\",\"dep_Id\":200,\"account\":\"001\",\"password\":\"111111\"}"}
+*************** response log end ***************
+
+[2021-02-01T13:15:41.269] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?account=002&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"002","password":"111111"}
+response time: 1
+response status: 200
+response body: 
+{"code":0,"data":{"name":"马六","age":19,"phone":"19933992283"}}
+*************** response log end ***************
+
+[2021-02-01T13:15:56.216] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+response status: 200
+response body: 
+{"code":0,"data":"{\"id\":2,\"name\":\"马六\",\"age\":19,\"phone\":\"19933992283\",\"dep_Id\":200,\"account\":\"002\",\"password\":\"111111\"}"}
+*************** response log end ***************
+

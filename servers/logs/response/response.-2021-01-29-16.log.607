@@ -1,0 +1,52 @@
+[2021-01-29T16:41:22.021] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 0
+response status: 200
+response body: 
+{"code":0,"data":123}
+*************** response log end ***************
+
+[2021-01-29T16:41:22.025] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 0
+response status: 200
+response body: 
+{"code":0,"data":123}
+*************** response log end ***************
+
+[2021-01-29T16:41:22.030] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 0
+response status: 200
+response body: 
+{"code":0,"data":123}
+*************** response log end ***************
+
+[2021-01-29T16:41:22.039] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 0
+response status: 200
+response body: 
+{"code":0,"data":123}
+*************** response log end ***************
+

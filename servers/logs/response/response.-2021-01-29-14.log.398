@@ -1,0 +1,37 @@
+[2021-01-29T14:09:47.327] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?account=001&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"001","password":"111111"}
+response time: 16
+response status: 200
+response body: 
+{"code":0,"data":{"user":{"id":1,"name":"张三","age":18,"phone":"199339922383","dep_Id":200,"account":"001","password":"111111"}}}
+*************** response log end ***************
+
+[2021-01-29T14:09:47.377] [INFO] resLogger - 
+*************** response log start ***************
+request method: POST
+request originalUrl:  /api/query
+request client ip:  ::ffff:127.0.0.1
+request body: 
+{}
+response time: 1
+response status: 200
+response body: 
+{"code":0,"data":123}
+*************** response log end ***************
+
+[2021-01-29T14:10:56.458] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?account=001&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"001","password":"111111"}
+response time: 12
+response status: 200
+response body: 
+{"code":0,"data":{"name":"张三","age":18,"phone":"199339922383"}}
+*************** response log end ***************
+

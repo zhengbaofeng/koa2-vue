@@ -1,0 +1,12 @@
+[2021-01-27T15:08:20.269] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/register?name=asd
+request client ip:  ::ffff:192.168.31.79
+request query:  {"name":"asd"}
+response time: 17
+response status: 200
+response body: 
+{"code":0,"data":[{"id":1,"name":"张三","age":18,"phone":"199339922383","dep_Id":200},{"id":2,"name":"张三","age":19,"phone":"19933992283","dep_Id":200},{"id":4,"name":"李四","age":29,"phone":"18833882273","dep_Id":201},{"id":5,"name":"王五","age":13,"phone":"18511211101","dep_Id":203}]}
+*************** response log end ***************
+

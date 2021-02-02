@@ -1,0 +1,24 @@
+[2021-01-28T17:09:11.861] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?account=001&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"001","password":"111111"}
+response time: 1
+response status: 200
+response body: 
+{"code":0,"data":{"user":{"NAME":"张三","AGE":18,"PHONE":"199339922383","PASSWORD":"111111"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjExMTExMSIsIm5hbWUiOiLlvKDkuIkiLCJpYXQiOjE2MTE4MjQ5NTEsImV4cCI6MTYxMTgzOTM1MX0.lH8CVjf6g-Wg7WWMNE-s0ZUJUC_D244Bhdj5pjlDx1o"}}
+*************** response log end ***************
+
+[2021-01-28T17:13:52.384] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?account=001&password=111111
+request client ip:  ::ffff:127.0.0.1
+request query:  {"account":"001","password":"111111"}
+response time: 14
+response status: 200
+response body: 
+{"code":0,"data":{"user":{"NAME":"张三","AGE":18,"PHONE":"199339922383","PASSWORD":"111111"},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjExMTExMSIsIm5hbWUiOiLlvKDkuIkiLCJpYXQiOjE2MTE4MjUyMzIsImV4cCI6MTYxMTgzOTYzMn0.6vgXjjSs93r46F0WRWURMsNC24K0Id83lJou-1DOrgY"}}
+*************** response log end ***************
+

@@ -1,0 +1,12 @@
+[2021-01-28T16:12:30.014] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?name=%E5%BC%A0%E4%B8%891
+request client ip:  ::ffff:192.168.31.79
+request query:  {"name":"张三1"}
+response time: 12
+response status: 200
+response body: 
+{"code":0,"data":{"user":{},"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMTIzIiwicGFzc3dvcmQiOiIxMjMiLCJpYXQiOjE2MTE4MjE1NTAsImV4cCI6MTYxMTgzNTk1MH0.TvbUVyL0eD7WU8_wM_PAazDpPCNzn-XCM6C0q2BRfLE","ctx":{"request":{"method":"GET","url":"/api/login?name=%E5%BC%A0%E4%B8%891","header":{"host":"192.168.31.79:3000","connection":"keep-alive","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","accept-encoding":"gzip, deflate","accept-language":"zh-CN,zh;q=0.9"}},"response":{"status":200,"message":"OK","header":{"content-type":"application/json; charset=utf-8","x-response-time":"12ms"}},"app":{"subdomainOffset":2,"proxy":false,"env":"development"},"originalUrl":"/api/login?name=%E5%BC%A0%E4%B8%891","req":"<original node req>","res":"<original node res>","socket":"<original node socket>"}}}
+*************** response log end ***************
+

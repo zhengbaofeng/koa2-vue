@@ -1,0 +1,24 @@
+[2021-01-28T16:08:37.144] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?name=%E5%BC%A0%E4%B8%89
+request client ip:  ::ffff:192.168.31.79
+request query:  {"name":"张三"}
+response time: 12
+response status: 200
+response body: 
+{"code":-1,"msg":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sqlMessage":"Unknown column '张三' in 'where clause'","sqlState":"42S22","index":0,"sql":"\n  SELECT\n    USER.NAME, USER.AGE, USER.PHONE\n  FROM\n    USER\n  WHERE\n    NAME = 张三"}}
+*************** response log end ***************
+
+[2021-01-28T16:09:05.118] [INFO] resLogger - 
+*************** response log start ***************
+request method: GET
+request originalUrl:  /api/login?name=%E5%BC%A0%E4%B8%89
+request client ip:  ::ffff:192.168.31.79
+request query:  {"name":"张三"}
+response time: 10
+response status: 200
+response body: 
+{"code":-1,"msg":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sqlMessage":"Unknown column '张三' in 'where clause'","sqlState":"42S22","index":0,"sql":"\n  SELECT\n    USER.NAME, USER.AGE, USER.PHONE\n  FROM\n    USER\n  WHERE\n    NAME = 张三"}}
+*************** response log end ***************
+

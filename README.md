@@ -1,24 +1,28 @@
-# koa
+# kao-vue 项目集成
 
-## Project setup
+## 项目初始化
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+npm run install
 ```
 
-### Compiles and minifies for production
+### 启动本地服务端
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+npm run test
 ```
 
+### 启动服务端
+```
+npm run serve
+```
+
+### 运行本地前端项目
+```
+npm run web
+```
+
+### 打包前端项目至web静态目录
+```
+npm run build
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
