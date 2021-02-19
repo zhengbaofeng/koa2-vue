@@ -13,11 +13,9 @@ const staticFile = require('koa-static')
 const logsUtil = require('./utils/logs.js')
 const routerResponse = require('./utils/routerResponse')
 const session = require('koa-session2')
-const Store = require('./utils/Store.js')
+const Store = require('./utils/store.js')
 //  app自定义配置参数
 global = {
-  //  jwt 秘钥
-  secret: 'zbfToken',
   //  mysql 配置
   mysql: {
     host: 'localhost',

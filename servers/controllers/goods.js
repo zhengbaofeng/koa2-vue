@@ -28,17 +28,46 @@ const MySql = require('../utils/mysql')
 const queryFunc = async (ctx, next) => {
   const params = ctx.request.query
   console.log(params)
+  const state = params.state || 0
   await MySql.queryStr(`
     SELECT
-        *
+      name, price, thumbnail, shop_id, id
     FROM GOODS
-        WHERE STATE = 0
+      WHERE STATE = '${state}'
   `).then((res) => {
     ctx.success(res)
   }).catch((err) => {
     ctx.fail(err, -1)
   })
 }
+/**
+ * @description: 根据商品id 查询商品详情
+ * @param {*} detailsFunc
+ * @return {*}
+ */
+const detailsFunc = async (ctx, next) => {
+  const params = ctx.request.query
+  console.log(params)
+  const id = params.id || 0
+  await MySql.queryStr(`
+    SELECT
+      SHOP.name AS shop_name,
+      SHOP.id AS shop_id,
+      GOODS.name,
+      GOODS.price,
+      GOODS.pic,
+      GOODS.description,
+      GOODS.quantity_sold
+    FROM GOODS INNER JOIN SHOP ON GOODS.SHOP_ID = SHOP.ID
+      WHERE GOODS.ID = ${id}
+  `).then((res) => {
+    ctx.success(res[0])
+  }).catch((err) => {
+    ctx.fail(err, -1)
+  })
+}
+
 module.exports = {
-  'POST /api/goods/query': queryFunc
+  'POST /api/goods/query': queryFunc,
+  'GET /api/goods/details': detailsFunc
 }

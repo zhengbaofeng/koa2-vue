@@ -18,6 +18,7 @@ var formatText = {
     logText += 'info detail: ' + '\n' + JSON.stringify(info) + '\n'
     // 响应日志结束信息
     logText += '*************** info log end ***************' + '\n'
+
     return logText
   },
   request: function (req, resTime) {
