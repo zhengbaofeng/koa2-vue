@@ -1,12 +1,7 @@
 
 <template>
   <div class="goodsDetails">
-    <van-swipe class="goods-pic" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in picList" :key="item">
-        <van-image fit="contain" :src="item" />
-      </van-swipe-item>
-    </van-swipe>
-
+    123123
   </div>
 </template>
 
@@ -17,14 +12,11 @@ export default {
   name: 'GoodsDetails',
   data () {
     return {
-      picList: []
     }
   },
   components: {
   },
   created () {
-    const that = this
-    that.getGoodsDetails(that.$route.query.id)
   },
   methods: {
     /**

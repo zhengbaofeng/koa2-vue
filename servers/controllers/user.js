@@ -46,7 +46,11 @@ const loginFunc = async (ctx, next) => {
         return
       }
       ctx.session.userinfo = JSON.stringify(res)
-      ctx.success('登陆成功')
+      ctx.success({
+        name: res.name,
+        phone: res.phone,
+        age: res.age
+      })
     } else {
       ctx.fail('没有该用户', -1)
     }

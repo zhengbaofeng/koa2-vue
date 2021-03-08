@@ -20,16 +20,23 @@
  */
 
 const state = {
-  name: 'zbf'
+  name: '',
+  phone: '',
+  age: ''
 }
 const getters = {
-  name: state => state.name
+  user: state => state
 }
 const actions = {
 
 }
 const mutations = {
-
+  //  设置用户基础信息
+  setUserInfo: (state, value) => {
+    state.name = value.name
+    state.phone = value.phone
+    state.age = value.age
+  }
 }
 
 export default {

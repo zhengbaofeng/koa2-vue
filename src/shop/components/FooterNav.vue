@@ -40,6 +40,11 @@ export default {
           text: '首页'
         },
         {
+          icon: 'home-o',
+          name: 'home',
+          text: '全部'
+        },
+        {
           icon: 'contact',
           name: 'user',
           text: '我的'

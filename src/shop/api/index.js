@@ -26,11 +26,6 @@ const axios = require('axios')
 //  axios配置拦截器
 axiosConfig(axios, Notify)
 
-console.log(url)
-for (const item in url) {
-  console.log(item)
-}
-
 //  用户接口封装
 export const user = {
   getUser: () => {
