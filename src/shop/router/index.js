@@ -30,9 +30,21 @@ const routes = [
     name: 'GoodsDetails',
     component: () => import('../views/GoodsDetails.vue')
   }, {
+    path: '/brandList',
+    name: 'BrandList',
+    component: () => import('../views/BrandList.vue')
+  }, {
     path: '/brandDetails',
     name: 'BrandDetails',
     component: () => import('../views/BrandDetails.vue')
+  }, {
+    path: '/order',
+    name: 'Order',
+    component: () => import('../views/Order.vue')
+  }, {
+    path: '/userOrder',
+    name: 'UserOrder',
+    component: () => import('../views/UserOrder.vue')
   }, {
     path: '/404',
     name: '404',

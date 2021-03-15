@@ -6,7 +6,7 @@
     </div>
     <van-swipe :autoplay="5000" :show-indicators="false">
       <van-swipe-item v-for="(item, index) in bannerList" :key="index">
-        <img v-lazy="item.src" />
+        <img v-lazy="item.img" @click="getBrandDetails"/>
       </van-swipe-item>
     </van-swipe>
     <div class="main">
@@ -47,7 +47,7 @@
 <script>
 import Vue from 'vue'
 import { Lazyload } from 'vant'
-import { goods } from 'shopApi'
+import { common, goods } from 'shopApi'
 import FooterNav from '../components/FooterNav.vue'
 
 Vue.use(Lazyload)
@@ -59,14 +59,7 @@ export default {
         codle: '010',
         city: '北京'
       },
-      bannerList: [
-        {
-          src: 'https://img01.yzcdn.cn/vant/apple-1.jpg'
-        },
-        {
-          src: 'https://img01.yzcdn.cn/vant/apple-2.jpg'
-        }
-      ],
+      bannerList: [],
       goodsList: []
     }
   },
@@ -75,9 +68,11 @@ export default {
   },
   created () {
     const that = this
-    that.getListData()
+    that.getBannerList()
+    that.getHotGoods()
   },
   mounted () {
+    this.$setgoindex()
   },
   methods: {
     /**
@@ -92,14 +87,63 @@ export default {
       })
     },
     /**
-     * @description: 获取列表数据
+     * @description: 获取banner数据
      * @param {*}
      * @return {*}
      */
-    getListData () {
+    getBannerList () {
       const that = this
-      goods.list().then(res => {
-        that.goodsList = res
+      common.banner({
+        chid: 1
+      }).then(res => {
+        //  测试数据
+        res = [
+          {
+            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
+            txt: '朝阳大悦城',
+            type: '1',
+            advId: '102',
+            url: ''
+          },
+          {
+            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
+            txt: '三里屯',
+            type: '1',
+            advId: '101',
+            url: ''
+          },
+          {
+            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
+            txt: '王府井',
+            type: '0',
+            advId: '',
+            url: 'https://hfive.xiaomyc.com/xxx/xxx'
+          }
+        ]
+        that.bannerList = res
+      })
+    },
+    /**
+     * @description: 获取热门商品列表数据
+     * @param {*}
+     * @return {*}
+     */
+    getHotGoods () {
+      //  const that = this
+      goods.getHotList({
+        chid: 1
+      }).then(res => {
+        //  测试数据
+        console.log(res)
+        res = [
+          {
+            id: 91, // 商品id
+            img: 'https://cdn.hfive.xiaomyc.com/banner_123.png',
+            ticketName: '50元代金券',
+            salePrice: 45.00,
+            url: 'https://hfive.xiaomyc.com/public/ticket?chid=1&goodsid=9&cityId=010'
+          }
+        ]
       })
     },
     /**
@@ -115,6 +159,20 @@ export default {
           id: val.id
         }
       })
+    },
+    /**
+     * @description: 获取品牌详细信息
+     * @param {*}
+     * @return {*}
+     */
+    getBrandDetails (val) {
+      // const that = this
+      // that.$router.push({
+      //   name: 'BrandDetails',
+      //   query: {
+      //     id: 123
+      //   }
+      // })
     }
   }
 }

@@ -7,7 +7,7 @@ function resolve (dir) {
 //  需要代理的地址头
 const devProxy = [
   {
-    hostUrl: `${env === 'development' ? 'http://127.0.0.1:3000' : 'http://127.0.0.1:3000'}`,
+    hostUrl: `${env === 'development' ? 'http://hfive.xiaomyc.com' : 'http://hfive.xiaomyc.com'}`,
     serveUrl: '/'
   }]
 console.log('==================================' + env + '环境启动===============================')
@@ -27,12 +27,12 @@ devProxy.forEach((value, index) => {
 })
 //  多入口打包配置
 const objectProject = {
-  admin: {
-    entry: 'src/admin/views/main.js',
-    template: 'public/admin.html',
-    filename: 'admin.html',
-    chunks: ['chunk-vendors', 'chunk-common', 'admin']
-  },
+  // admin: {
+  //   entry: 'src/admin/views/main.js',
+  //   template: 'public/admin.html',
+  //   filename: 'admin.html',
+  //   chunks: ['chunk-vendors', 'chunk-common', 'admin']
+  // },
   index: {
     entry: 'src/shop/views/main.js',
     template: 'public/index.html',

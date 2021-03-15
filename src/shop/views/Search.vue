@@ -27,7 +27,6 @@
               <p class="type">{{ brand.type }}</p>
               <p class="coupon">{{ brand.coupon }}</p>
             </div>
-
           </li>
         </ul>
       </div>

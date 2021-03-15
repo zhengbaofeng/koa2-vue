@@ -25,40 +25,18 @@ const axiosConfig = require('./axiosConfig')
 const axios = require('axios')
 //  axios配置拦截器
 axiosConfig(axios, Notify)
-
-//  用户接口封装
-export const user = {
-  getUser: () => {
-    return axios.post(url.getUserInfo).then((res) => {
-      return res.data || ''
-    })
-  },
-  login: (params) => {
-    return axios.get(url.userLogin, { params }).then((res) => {
-      return res.data || ''
-    })
-  },
-  out: () => {
-    return axios.get(url.userOut).then((res) => {
-      return res.data || ''
-    })
-  },
-  register: (params) => {
-    return axios.get(url.userRegister, { params }).then((res) => {
+//  公共接口
+export const common = {
+  banner: (params) => {
+    return axios.get(url.getBannnerList, { params }).then((res) => {
       return res.data || ''
     })
   }
 }
 
-//  商品接口封装
 export const goods = {
-  list: () => {
-    return axios.post(url.getGoodsList).then((res) => {
-      return res.data || ''
-    })
-  },
-  details: (params) => {
-    return axios.get(url.getGoodsDetails, { params }).then((res) => {
+  getHotList: (params) => {
+    return axios.get(url.getHotGoogs, { params }).then((res) => {
       return res.data || ''
     })
   }

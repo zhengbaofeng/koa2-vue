@@ -15,13 +15,13 @@
  * @Date: 2021-02-03 13:42:19
  * @LastEditors: 郑宝丰
  * @LastEditTime: 2021-02-03 13:42:19
- * @Description: 文件描述
+ * @Description: 底部导航菜单
  * @FilePath: /koa-vue/src/components/FooterNav.vue
  -->
 <template>
   <div class="footer-nav">
     <van-tabbar v-model="active"  @change="navChange">
-        <van-tabbar-item :name="item.name" :icon="item.icon" v-for="item in navList" :key="item.text">{{ item.text }}</van-tabbar-item>
+      <van-tabbar-item :name="item.name" :icon="item.icon" v-for="item in navList" :key="item.text">{{ item.text }}</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -40,8 +40,8 @@ export default {
           text: '首页'
         },
         {
-          icon: 'home-o',
-          name: 'home',
+          icon: 'apps-o',
+          name: 'brand',
           text: '全部'
         },
         {
@@ -58,14 +58,24 @@ export default {
   },
   methods: {
     navChange (e) {
+      const that = this
+      let path = ''
       switch (e) {
         case 'home':
+          path = '/'
+          break
+        case 'brand':
+          path = '/brandList'
           break
         case 'user':
+          path = '/userOrder'
           break
         default:
           break
       }
+      that.$router.push({
+        path
+      })
     }
   }
 }

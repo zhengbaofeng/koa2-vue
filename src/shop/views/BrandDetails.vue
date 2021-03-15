@@ -17,11 +17,18 @@
       <div class="card-box">
         <ul>
           <li class="box" v-for="(item, index) in brand.cardList" :key="index">
-            <p class="name">{{ item.name }}</p>
-            <spn>{{ item.discountedPrice }}<small>{{ item.price }}</small></spn>
-            <van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
-              购买
-            </van-button>
+            <div class="info">
+              <p class="name">{{ item.name }}</p>
+              <span>
+                {{ item.discountedPrice }}
+                <small>{{ item.price }}</small>
+              </span>
+            </div>
+            <div class="btn-box">
+              <van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
+                购买
+              </van-button>
+            </div>
           </li>
         </ul>
       </div>
@@ -30,11 +37,13 @@
       <p class="title">商户介绍</p>
       <p>ahdahsdhashdkasj</p>
     </div>
+    <bottom-footer :btn="footerBtn"/>
   </div>
 </template>
 
 <script>
 
+import BottomFooter from '../components/Footer.vue'
 import { goods } from 'shopApi'
 export default {
   name: 'BrandDetails',
@@ -51,10 +60,12 @@ export default {
           }
         ]
       },
-      picList: []
+      picList: [],
+      footerBtn: []
     }
   },
   components: {
+    BottomFooter
   },
   created () {
     const that = this
@@ -78,17 +89,15 @@ export default {
 </script>
 <style scoped lang="scss">
 .logo-box{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   box-sizing: border-box;
   position: relative;
-  padding: 0px 0px 0px 100px;
   height: 100px;
   .logo{
-    position: absolute;
-    left: 0px;
-    top: 50%;
     width: 100px;
-    height: 100px;
-    transform: translate(0px, -50%);
+    height: 100%;
   }
   .label{
     box-sizing: border-box;
@@ -99,10 +108,60 @@ export default {
 .main{
   padding: 10PX;
   .box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
-    font-size: 16px;
+    border-radius: 3px;
+    height: 80px;
+    .info{
+      padding: 0px 20px;
+      font-size: 16px;
+      text-align: left;
+      span{
+        small{
+          color: rgb(238, 10, 36);
+          text-decoration: line-through;
+        }
+      }
+    }
+    .btn-box{
+      position: relative;
+      padding: 15px 20px;
+      border-left: 1px dashed #ddd;
+      &::before{
+        content: '';
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        left: -5px;
+        top: -15px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transform:rotate(-90deg);
+        border-left: 1px solid #ddd;
+        background-color: #f9f9f9;
+      }
+      &::after{
+        content: '';
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        left: -5px;
+        bottom: -15px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transform:rotate(90deg);
+        border-left: 1px solid #ddd;
+        background-color: #f9f9f9;
+      }
+    }
+    .van-button{
+      height: 30px;
+    }
   }
-
 }
 .introduction{
   p{

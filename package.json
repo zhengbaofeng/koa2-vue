@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon node servers/app.js & vue-cli-service serve",
+    "web": "vue-cli-service serve",
     "serve": "node servers/app.js",
     "build": "vue-cli-service build admin && vue-cli-service build index",
     "lint": "vue-cli-service lint"

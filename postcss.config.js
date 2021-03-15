@@ -10,7 +10,19 @@ module.exports = {
       unitPrecision: 5,
       //  可以从px更改为rem的属性
       //  propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
-      propList: ['line-height', 'height', 'width', 'padding', 'margin', 'border-radius', 'font-size'],
+      propList: [
+        'line-height',
+        'height',
+        'width',
+        'padding',
+        'top',
+        'left',
+        'right',
+        'bottom',
+        'margin',
+        'border-radius',
+        'font-size'
+      ],
       //  要忽略的选择器，保留为px
       selectorBlackList: [],
       //  替换包含rems的规则
@@ -20,7 +32,7 @@ module.exports = {
       //  设置要替换的最小像素值
       minPixelValue: 0,
       //  要忽略并保留为px的文件路径
-      exclude: /node_modules/i
+      exclude: /node_modules/
     }
   }
 }

@@ -9,6 +9,17 @@ import 'vant/lib/index.css'
 Vue.config.productionTip = false
 
 Vue.use(Vant)
+//  根据历史记录判断是否有上一页
+Vue.prototype.$setgoindex = function () {
+  console.log(window.history)
+  if (window.history.length <= 1) {
+    if (location.href.indexOf('?') === -1) {
+      window.location.href = location.href + '?goindex=true'
+    } else if (location.href.indexOf('?') !== -1 && location.href.indexOf('goindex') === -1) {
+      window.location.href = location.href + '&goindex=true'
+    }
+  }
+}
 
 console.log('进入商城')
 

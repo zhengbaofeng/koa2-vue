@@ -19,12 +19,7 @@
  * @FilePath: /koa-vue/src/api/apiConfig.js
  */
 
-//  用户接口地址
-export const getUserInfo = '/api/user/query'
-export const userLogin = '/api/user/login'
-export const userOut = '/api/user/out'
-export const userRegister = '/api/user/register'
-
-//  商品接口地址
-export const getGoodsList = '/api/goods/query'
-export const getGoodsDetails = '/api/goods/details'
+//  获取banner接口
+export const getBannnerList = '/public/advs'
+//  获取热门商品信息
+export const getHotGoogs = '/public/hotlists'
