@@ -26,6 +26,7 @@
       :loading="item.loading"
       round
       :type="item.type"
+      :disabled="item.disabled"
       v-for="(item, index) in btn"
       :key="index"
       @click="item.callback">
@@ -53,7 +54,6 @@ export default {
     } else {
       that.icon = 'arrow-left'
     }
-    console.log('创建底部菜单')
   },
   mounted () {
   },
@@ -76,4 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#footer{
+  background-color: #fff;
+}
 </style>

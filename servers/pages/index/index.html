@@ -1,1 +1,53 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="favicon.ico"><title>商城</title><link href="static/js/chunk-2d20f327.2ee962f5.js" rel="prefetch"><link href="static/js/chunk-2d21a966.4dc5630f.js" rel="prefetch"><link href="static/js/chunk-2d22d3a7.a995bba1.js" rel="prefetch"><link href="static/js/chunk-93f556ac.4b5087c8.js" rel="prefetch"><link href="static/css/chunk-vendors.4df7779d.css" rel="preload" as="style"><link href="static/css/index.2b1a1a00.css" rel="preload" as="style"><link href="static/js/chunk-vendors.88bcb5da.js" rel="preload" as="script"><link href="static/js/index.1e9a8585.js" rel="preload" as="script"><link href="static/css/chunk-vendors.4df7779d.css" rel="stylesheet"><link href="static/css/index.2b1a1a00.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but koa-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="static/js/chunk-vendors.88bcb5da.js"></script><script src="static/js/index.1e9a8585.js"></script></body></html>
+<!--
+ *                   江城子 . 程序员之歌
+ *
+ *               十年生死两茫茫，写程序，到天亮。
+ *                   千行代码，Bug何处藏。
+ *               纵使上线又怎样，朝令改，夕断肠。
+ *
+ *               领导每天新想法，天天改，日日忙。
+ *                   相顾无言，惟有泪千行。
+ *               每晚灯火阑珊处，夜难寐，加班狂。
+ *
+ *
+ * @Autor: 郑宝丰
+ * @Version: 1.0
+ * @Date: 2021-03-19 11:51:51
+ * @LastEditors: 郑宝丰
+ * @LastEditTime: 2021-03-19 11:51:51
+ * @Description: 文件描述
+ * @FilePath: /koa-vue/servers/pages/index/index.html
+ -->
+ <html>
+    <head>
+       <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+       <style>
+          body { font-family: Arial; }
+       </style>
+    </head>
+    <body>
+       <ul id = "list">
+           <li>1</li>
+           <li>2</li>
+       </ul>
+       <input type = "button" name = "remove" value = "Remove fourth value"
+          onclick = "javascript:remove()" />
+       <script>
+          d3.select("#list").selectAll("li")
+             .data([10, 20, 30, 25, 15])
+             .text((value,index,obj) => {
+                 console.log(obj[index])
+                 return "这是改变的" + value;
+            })
+             .enter()
+             .append("li")
+             .text(d => { return "这是创建的 " + d; });
+          function remove() {
+             d3.selectAll("li")
+             .data([10, 20, 30, 15])
+             .exit()
+             .remove()
+          }
+       </script>
+    </body>
+ </html>

@@ -1,51 +1,39 @@
 
 <template>
   <div id="brandList">
-    <ul>
-      <li class="box" v-for="(item, index) in brandList" :key="index">
-        <van-image
-          class="logo"
-          :src="item.pic"
-        />
-        <div class="info">
-          <span class="name">{{ item.name }}</span>
-          <span class="type">{{ item.type }}</span>
-          <span class="coupon">{{ item.coupon }}</span>
-        </div>
-      </li>
-    </ul>
+    <van-pull-refresh v-model="loading" @refresh="onRefresh">
+      <ul>
+        <li class="box" v-for="(item, index) in brandList" :key="index" @click="getBrandDetails(item)">
+          <van-image
+            class="logo"
+            :src="item.img"
+          />
+          <div class="info">
+            <span class="name">{{ item.storeName }}</span>
+            <span class="type">{{ item.foodType }}</span>
+            <span class="coupon">{{ item.ticketss[0] ? item.ticketss[0].name : '' }}</span>
+          </div>
+        </li>
+      </ul>
+    </van-pull-refresh>
+
     <footer-nav index="brand" />
   </div>
 </template>
 
 <script>
 import FooterNav from '../components/FooterNav.vue'
-//  import { goods } from 'shopApi'
+import { shop } from 'shopApi'
 export default {
   name: 'BrandDetails',
   data () {
     return {
       loading: false,
-      brandList: [
-        {
-          name: '星巴克',
-          pic: 'https://img01.yzcdn.cn/vant/cat.jpeg',
-          type: '咖啡/饮料',
-          coupon: '星巴克50卷'
-        },
-        {
-          name: '星巴克',
-          pic: 'https://img01.yzcdn.cn/vant/cat.jpeg',
-          type: '咖啡/饮料',
-          coupon: '星巴克50卷'
-        },
-        {
-          name: '星巴克',
-          pic: 'https://img01.yzcdn.cn/vant/cat.jpeg',
-          type: '咖啡/饮料',
-          coupon: '星巴克50卷'
-        }
-      ],
+      page: {
+        offset: 1,
+        limit: 20
+      },
+      brandList: [],
       footerBtn: []
     }
   },
@@ -56,17 +44,57 @@ export default {
   },
   created () {
     const that = this
-    that.getBrandList(that.$route.query.id)
+    //  获取商户/品牌列表
+    that.getShopList()
   },
   methods: {
     /**
-     * @description: 获取商品列表
+     * @description: 下拉刷新事件
      * @param {*}
      * @return {*}
      */
-    getBrandList (id) {
-      if (!id) return
-      console.log(id)
+    onRefresh () {
+
+    },
+    /**
+     * @description: 获取商户/品牌列表
+     * @param {*}
+     * @return {*}
+     */
+    getShopList (params) {
+      const that = this
+      if (!params) {
+        const location = that.$store.getters.location
+        params = {
+          chid: that.$store.getters.chid,
+          cityId: location.cityId,
+          latitude: location.lat,
+          longitude: location.lon,
+          offset: that.page.offset,
+          limit: that.page.limit
+        }
+      }
+      that.loading = true
+      shop.getList(params).then(res => {
+        that.loading = false
+        that.brandList = res
+      }).catch(() => {
+        that.loading = false
+      })
+    },
+    /**
+     * @description: 获取品牌详情信息
+     * @param {*} params 商品详细信息
+     * @return {*}
+     */
+    getBrandDetails (params) {
+      const that = this
+      that.$router.push({
+        name: 'BrandDetails',
+        query: {
+          id: params.storeID
+        }
+      })
     },
     /**
      * @description:  够购买事件

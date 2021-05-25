@@ -4,14 +4,22 @@ import router from '../router'
 import store from '../store'
 import './rem'
 import Vant from 'vant'
+//  import VConsole from 'vconsole'
 import 'vant/lib/index.css'
+import MinXin from '../mixin'
+
+// eslint-disable-next-line
+//  const vconsole = new VConsole()
 
 Vue.config.productionTip = false
 
+//  全局混入
+Vue.mixin(MinXin)
+//  加载组件
 Vue.use(Vant)
+
 //  根据历史记录判断是否有上一页
 Vue.prototype.$setgoindex = function () {
-  console.log(window.history)
   if (window.history.length <= 1) {
     if (location.href.indexOf('?') === -1) {
       window.location.href = location.href + '?goindex=true'
@@ -21,10 +29,7 @@ Vue.prototype.$setgoindex = function () {
   }
 }
 
-console.log('进入商城')
-
 router.beforeEach((to, from, next) => {
-  console.log(to, from)
   //  重定向至首页
   if (to.redirectedFrom) {
     next('/')

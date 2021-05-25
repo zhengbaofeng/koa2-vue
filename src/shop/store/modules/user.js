@@ -20,16 +20,32 @@
  */
 
 const state = {
-  name: 'zbf'
+  userInfo: {
+    uid: '',
+    token: ''
+  },
+  location: {
+    pinyin: '',
+    abbr: '',
+    name: '',
+    lat: '',
+    lon: '',
+    cityId: ''
+  },
+  token: ''
 }
 const getters = {
-  name: state => state.name
+  userInfo: state => state.userInfo,
+  location: state => state.location,
+  token: state => state.token
 }
 const actions = {
 
 }
 const mutations = {
-
+  setUserInfo: (state, value) => { state.userInfo = value },
+  setLocation: (state, value) => { state.location = value },
+  setToken: (state, value) => { state.token = value }
 }
 
 export default {

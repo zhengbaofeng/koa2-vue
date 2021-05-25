@@ -8,25 +8,29 @@
         <van-image
           width="100%"
           height="100%"
-          :src="brand.logo"
+          :src="brand.img"
         />
       </div>
-      <p class="label">{{ brand.name }}</p>
+      <p class="label">{{ brand.spName }}</p>
     </div>
     <div class="main">
       <div class="card-box">
         <ul>
-          <li class="box" v-for="(item, index) in brand.cardList" :key="index">
+          <li class="box" v-for="(item, index) in brand.tickets" :key="index">
             <div class="info">
-              <p class="name">{{ item.name }}</p>
+              <p class="name">{{ item.ticketName }}</p>
               <span>
-                {{ item.discountedPrice }}
-                <small>{{ item.price }}</small>
+                {{ item.salePrice }}
+                <small>{{ item.faceValue }}</small>
               </span>
             </div>
             <div class="btn-box">
-              <van-button color="linear-gradient(to right, #ff6034, #ee0a24)">
+              <!-- saleState 0是已售罄，1是确认订单，2是未开售，3是不可售 -->
+              <van-button v-if="item.faceValue !== 1" @click="buy(item)" color="linear-gradient(to right, #ff6034, #ee0a24)">
                 购买
+              </van-button>
+              <van-button disabled v-else>
+                {{ item.faceValue ? '未开始' : '已售罄' }}
               </van-button>
             </div>
           </li>
@@ -35,7 +39,7 @@
     </div>
     <div class="introduction">
       <p class="title">商户介绍</p>
-      <p>ahdahsdhashdkasj</p>
+      <p v-html="brand.comments"></p>
     </div>
     <bottom-footer :btn="footerBtn"/>
   </div>
@@ -44,21 +48,29 @@
 <script>
 
 import BottomFooter from '../components/Footer.vue'
-import { goods } from 'shopApi'
+import { shop } from 'shopApi'
 export default {
   name: 'BrandDetails',
   data () {
     return {
+      brandId: '',
       brand: {
-        logo: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-        name: '星爸理科',
-        cardList: [
-          {
-            name: '星爸爸打折卷',
-            discountedPrice: '200',
-            price: '300'
-          }
-        ]
+        storeCnt: '', // 【所在城市的】店铺数量
+        hotValue: '', // 已售数量
+        comments: '',
+        img: '',
+        spName: '',
+        spid: '',
+        storeName: '', // 分店名称
+        foodType: '',
+        telphone: '',
+        city: '',
+        district: '',
+        blockName: '',
+        adress: '',
+        longitude: '',
+        latitude: '',
+        tickets: []
       },
       picList: [],
       footerBtn: []
@@ -69,7 +81,8 @@ export default {
   },
   created () {
     const that = this
-    that.getGoodsDetails(that.$route.query.id)
+    that.brandId = that.$route.query.id
+    that.getBrandDetails(that.brandId)
   },
   methods: {
     /**
@@ -77,11 +90,28 @@ export default {
      * @param {*}
      * @return {*}
      */
-    getGoodsDetails (id) {
+    getBrandDetails (id) {
       if (!id) return
       const that = this
-      goods.details({ id: 5 }).then(res => {
-        that.picList = res.pic.split('|')
+      const location = that.$store.getters.location
+      shop.getDetails({
+        id: that.brandId,
+        chid: that.$store.getters.chid,
+        cityId: location.cityId
+      }).then(res => {
+        that.brand = res
+      })
+    },
+    /**
+     * @description: 购买优惠券
+     * @param {*} card  购买优惠券信息
+     * @return {*}
+     */
+    buy (card) {
+      const that = this
+      that.$router.push({
+        name: 'CouponDetails',
+        query: card
       })
     }
   }

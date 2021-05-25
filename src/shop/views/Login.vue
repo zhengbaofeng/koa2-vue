@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { user } from 'shopApi'
+//  import { user } from 'shopApi'
 export default {
   name: 'login',
   data () {
@@ -56,8 +56,6 @@ export default {
   components: {
   },
   mounted () {
-    const that = this
-    console.log(that.$store.getters.name)
   },
   methods: {
     /**
@@ -66,15 +64,15 @@ export default {
      * @return {*}
      */
     onSubmit () {
-      const that = this
-      user.login({
-        account: that.account,
-        password: that.password
-      }).then(res => {
-        that.$router.push({
-          name: 'About'
-        })
-      })
+      // const that = this
+      // user.login({
+      //   account: that.account,
+      //   password: that.password
+      // }).then(res => {
+      //   that.$router.push({
+      //     name: 'About'
+      //   })
+      // })
     }
   }
 }

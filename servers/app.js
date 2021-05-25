@@ -71,7 +71,6 @@ app.use(session({
 }))
 //  加载api控制器
 controllers()
-
 //  错误处理
 app.on('error', err => {
   console.log('服务器错误:', err)

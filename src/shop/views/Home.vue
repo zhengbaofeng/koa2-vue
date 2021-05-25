@@ -14,32 +14,14 @@
         <van-divider>今日推荐</van-divider>
       </div>
       <div class="bank-goods-list">
-        <div class="thumbnail-box" v-for="goods in goodsList" :key="goods.name" @click="getGoodsDetails(goods)">
+        <div class="thumbnail-box" v-for="goods in goodsList" :key="goods.name" @click="getCouponDetails(goods)">
           <van-image
             width="100%"
             height="auto"
-            :src="goods.thumbnail"
-          />
+            :src="goods.img" />
         </div>
       </div>
     </div>
-    <!-- <div class="goods-list">
-      <van-grid :column-num="2" :gutter="10" :border="false">
-        <van-grid-item v-for="goods in goodsList" :key="goods.name" @click="getGoodsDetails(goods)">
-          <div>
-            <div class="thumbnail-box">
-              <van-image
-                width="100%"
-                height="auto"
-                :src="goods.thumbnail"
-              />
-            </div>
-            <p class="name">{{ goods.name }}</p>
-            <span class="price">$  {{ goods.price }}</span>
-          </div>
-        </van-grid-item>
-      </van-grid>
-    </div> -->
     <footer-nav index="home" />
   </div>
 </template>
@@ -49,15 +31,13 @@ import Vue from 'vue'
 import { Lazyload } from 'vant'
 import { common, goods } from 'shopApi'
 import FooterNav from '../components/FooterNav.vue'
-
 Vue.use(Lazyload)
 export default {
   name: 'Home',
   data () {
     return {
       location: {
-        codle: '010',
-        city: '北京'
+        city: ''
       },
       bannerList: [],
       goodsList: []
@@ -68,11 +48,27 @@ export default {
   },
   created () {
     const that = this
+    //  登录
+    that.userLogin().then(res => {
+      console.log(that.$store.getters.userInfo)
+    })
+    //  获取位置信息
+    that.getLocation().then(res => {
+      that.location.city = res.name || '北京'
+    }).catch(err => {
+      console.log(err)
+    })
+    //  获取banner
     that.getBannerList()
+    //  获取热门商品
     that.getHotGoods()
+    //  获取首页广告信息
+    that.getAdvertisingList()
   },
   mounted () {
-    this.$setgoindex()
+    const that = this
+    //  设置返回index
+    that.$setgoindex()
   },
   methods: {
     /**
@@ -93,35 +89,22 @@ export default {
      */
     getBannerList () {
       const that = this
-      common.banner({
-        chid: 1
+      common.getBanner({
+        chid: that.$store.getters.chid
       }).then(res => {
-        //  测试数据
-        res = [
-          {
-            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-            txt: '朝阳大悦城',
-            type: '1',
-            advId: '102',
-            url: ''
-          },
-          {
-            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-            txt: '三里屯',
-            type: '1',
-            advId: '101',
-            url: ''
-          },
-          {
-            img: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-            txt: '王府井',
-            type: '0',
-            advId: '',
-            url: 'https://hfive.xiaomyc.com/xxx/xxx'
-          }
-        ]
         that.bannerList = res
       })
+    },
+    /**
+     * @description: 获取首页广告位
+     * @param {*}
+     * @return {*}
+     */
+    getAdvertisingList () {
+      const that = this
+      common.getAdvertisingList({
+        chid: that.$store.getters.chid
+      }).then(res => {})
     },
     /**
      * @description: 获取热门商品列表数据
@@ -129,21 +112,12 @@ export default {
      * @return {*}
      */
     getHotGoods () {
-      //  const that = this
+      const that = this
       goods.getHotList({
-        chid: 1
+        chid: that.$store.getters.chid
       }).then(res => {
         //  测试数据
-        console.log(res)
-        res = [
-          {
-            id: 91, // 商品id
-            img: 'https://cdn.hfive.xiaomyc.com/banner_123.png',
-            ticketName: '50元代金券',
-            salePrice: 45.00,
-            url: 'https://hfive.xiaomyc.com/public/ticket?chid=1&goodsid=9&cityId=010'
-          }
-        ]
+        that.goodsList = res
       })
     },
     /**
@@ -151,10 +125,10 @@ export default {
      * @param {*}
      * @return {*}
      */
-    getGoodsDetails (val) {
+    getCouponDetails (val) {
       const that = this
       that.$router.push({
-        name: 'GoodsDetails',
+        name: 'CouponDetails',
         query: {
           id: val.id
         }

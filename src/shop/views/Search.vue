@@ -12,43 +12,42 @@
         <van-tag plain type="primary" v-for="(item, key) in localList" color="#737373" :key="'local' + key" @click="localHandle(item)">{{ item }}</van-tag>
       </div>
       <van-divider />
-      <div class="brand-list">
-        <ul>
-          <li class="box" v-for="(brand, index) in brandList" @click="brandHandle(brand)" :key="'brand' + index">
-            <div class="logo">
+      <van-list
+        class="brand-list"
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="getListData"
+      >
+        <van-cell class="box"  v-for="(brand, index) in brandList" @click="brandHandle(brand)" :key="'brand' + index" >
+          <div class="logo">
               <van-image
                 width="100%"
                 height="100%"
-                :src="brand.pic"
+                :src="brand.img"
               />
             </div>
             <div class="info">
-              <p class="name">{{ brand.name }}</p>
-              <p class="type">{{ brand.type }}</p>
-              <p class="coupon">{{ brand.coupon }}</p>
+              <p class="name">{{ brand.storeName }}</p>
+              <p class="type">{{ brand.foodType }}</p>
+              <p class="coupon" v-for="(coupon, couponIndex) in brand.ticketss" :key="'coupon' + couponIndex">{{ coupon.name }}</p>
             </div>
-          </li>
-        </ul>
-      </div>
+        </van-cell>
+      </van-list>
     </div>
   </div>
 </template>
 
 <script>
-//  import { goods } from 'shopApi'
+import { shop } from 'shopApi'
 export default {
   name: 'Home',
   data () {
     return {
       localList: [],
-      brandList: [
-        {
-          name: '星巴克',
-          pic: 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-          type: '酒水饮料',
-          coupon: '50元代金价'
-        }
-      ],
+      brandList: [],
+      loading: false,
+      finished: true,
       form: {
         key: ''
       }
@@ -71,7 +70,10 @@ export default {
     brandHandle (brand) {
       const that = this
       that.$router.push({
-        path: '/brandDetails'
+        path: '/brandDetails',
+        query: {
+          id: brand.storeID
+        }
       })
     },
     /**
@@ -92,16 +94,31 @@ export default {
     getListData () {
       const that = this
       if (!that.form.key) return
-      //  本地数据添加
-      const local = JSON.parse(localStorage.getItem('BJBank_FoodSearch_LocalData') || '[]')
-      //  删除数组重复元素
-      local.remove(that.form.key)
-      local.unshift(that.form.key)
-      that.localList = local.slice(-5)
-      localStorage.setItem('BJBank_FoodSearch_LocalData', JSON.stringify(that.localList))
-      that.brandList = [
-        {}
-      ]
+      that.loading = true
+      that.finished = false
+      shop.getList({
+        chid: that.$store.getters.chid,
+        latitude: that.$store.getters.location.lat,
+        longitude: that.$store.getters.location.lon,
+        offset: 1,
+        limit: 20,
+        cityId: that.$store.getters.location.cityId,
+        keyword: that.form.key
+      }).then(res => {
+        that.loading = false
+        that.finished = true
+        that.brandList = res
+        //  本地数据添加
+        const local = JSON.parse(localStorage.getItem('BJBank_FoodSearch_LocalData') || '[]')
+        //  删除数组重复元素
+        local.remove(that.form.key)
+        local.unshift(that.form.key)
+        that.localList = local.slice(-5)
+        localStorage.setItem('BJBank_FoodSearch_LocalData', JSON.stringify(that.localList))
+      }).catch(() => {
+        that.loading = false
+        that.finished = true
+      })
     },
     /**
      * @description: 获取本地查询历史
@@ -111,20 +128,6 @@ export default {
     getLocalData (val) {
       const that = this
       that.localList = JSON.parse(localStorage.getItem('BJBank_FoodSearch_LocalData') || '[]')
-    },
-    /**
-     * @description: 获取商品详细信息
-     * @param {*}
-     * @return {*}
-     */
-    getGoodsDetails (val) {
-      const that = this
-      that.$router.push({
-        name: 'GoodsDetails',
-        query: {
-          id: val.id
-        }
-      })
     }
   }
 }
@@ -223,7 +226,6 @@ export default {
       }
     }
     .info{
-      height: 100px;
       padding: 0px 0px 0px 110px;
     }
   }

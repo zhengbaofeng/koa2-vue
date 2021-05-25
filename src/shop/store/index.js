@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   //  状态
   state: {
+    chid: 'bob01'
   },
   mutations: {
   },
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   },
   //  过滤处理state数据
   getters: {
+    chid: (state) => state.chid
   },
   modules: {
     user
